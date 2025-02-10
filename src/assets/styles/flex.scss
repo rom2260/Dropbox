@@ -1,0 +1,189 @@
+.fl-row {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.fl-row--equal > .fl-column {
+  box-sizing: border-box;
+  flex: 1 0 0%;
+}
+
+.fl-row--column {
+  flex-direction: column;
+}
+
+.fl-row--reverse-row {
+  flex-direction: row-reverse;
+}
+
+.fl-row--middle {
+  align-items: center;
+}
+
+.fl-row--wrap {
+  flex-wrap: wrap;
+  justify-content: initial;
+}
+
+.fl-row--center {
+  justify-content: center;
+}
+
+.fl-row--space-around {
+  justify-content: space-around;
+}
+
+.fl-row--space-evenly {
+  justify-content: space-evenly;
+}
+
+.fl-row--end {
+  justify-content: end;
+}
+
+.fl-row--start {
+  align-items: start;
+}
+
+.fl-row--bottom {
+  align-items: flex-end;
+}
+
+.fl-row--space-between {
+  justify-content: space-between;
+}
+
+.fl-row-self-end {
+  align-self: flex-end;
+}
+
+.fl-row--gutter {
+  margin-left: -0.6rem;
+  margin-right: -0.6rem;
+}
+.fl-row--gutter > .fl-column {
+  padding: 0 0.6rem;
+}
+
+.fl-row--full-gutter {
+  margin: -0.6rem;
+}
+.fl-row--full-gutter > .fl-column {
+  padding: 0.6rem;
+}
+
+.fl-one {
+  flex: 1 0 0%;
+}
+
+.xsmall-1 > .fl-column {
+  flex: 0 0 100%;
+}
+
+.xsmall-2 > .fl-column {
+  flex: 0 0 50%;
+}
+
+.xsmall-3 > .fl-column {
+  flex: 0 0 33.3333333333%;
+}
+
+.xsmall-4 > .fl-column {
+  flex: 0 0 25%;
+}
+
+.xsmall-5 > .fl-column {
+  flex: 0 0 20%;
+}
+
+.xsmall-6 > .fl-column {
+  flex: 0 0 16.6666666667%;
+}
+
+.fl-column--1 {
+  flex-basis: 100%;
+}
+
+.fl-column--2 {
+  flex-basis: 50%;
+}
+
+.fl-column--3 {
+  flex-basis: 33.33%;
+}
+
+.fl-column--4 {
+  flex-basis: 25%;
+}
+
+.fl-column--5 {
+  flex-basis: 20%;
+}
+
+.fl-column--6 {
+  flex-basis: 16.66%;
+}
+
+.fl-column--8 {
+  flex-basis: 12.6%;
+}
+
+.fl-column--10 {
+  flex-basis: 10%;
+}
+
+// Justify Content
+
+.justify-content-start {
+  justify-content: start;
+}
+
+.justify-content-end {
+  justify-content: flex-end !important;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between !important;
+}
+
+// Align Items
+
+.align-items-start {
+  align-items: flex-start;
+}
+
+.align-items-end {
+  align-items: flex-end;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.align-self-end {
+  align-self: flex-end;
+}
+
+// flex grow for making dynamic fixed and scrollable content
+.scrollable-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  .scrollable-content {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+  }
+}

@@ -1,0 +1,104 @@
+version: "3.8"
+
+services:
+  frontend:
+    container_name: dropbox-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./src:/app/src
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
+      - ./angular.json:/app/angular.json
+      - ./tsconfig.json:/app/tsconfig.json
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+    networks:
+      - dropbox-network
+
+  backend:
+    container_name: dropbox-backend
+    build:
+      context: ./dropbox-backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./dropbox-backend/src:/app/src
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/dropbox?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=${DB_ROOT_PASSWORD}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION}
+      - AWS_S3_BUCKET=${AWS_S3_BUCKET}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - dropbox-network
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+
+  db:
+    image: mysql:8.0
+    container_name: dropbox-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=dropbox
+      - MYSQL_ROOT_HOST=%
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./dropbox-backend/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    command:
+      - --default-authentication-plugin=mysql_native_password
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --innodb_buffer_pool_size=128M
+      - --innodb_log_file_size=32M
+      - --max_allowed_packet=64M
+      - --performance_schema=OFF
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "root",
+          "-p${DB_ROOT_PASSWORD}",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - dropbox-network
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+
+volumes:
+  mysql_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/mysql-data
+
+networks:
+  dropbox-network:
+    driver: bridge

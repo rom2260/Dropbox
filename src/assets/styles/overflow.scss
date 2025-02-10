@@ -1,0 +1,20 @@
+$overflow-plane: (
+  'overflow': overflow,
+  'overflow-y': overflow-y,
+  'overflow-x': overflow-x
+);
+
+$overflow-type: (
+  'auto': auto,
+  'hidden': hidden,
+  'visible': visible,
+  'scroll': scroll
+);
+
+@each $plane in map-keys($overflow-plane) {
+  @each $type in map-keys($overflow-type) {
+    .#{$plane}-#{$type} {
+      #{map-get($overflow-plane, $plane)}: #{map-get($overflow-type, $type)} !important;
+    }
+  }
+}

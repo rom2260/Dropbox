@@ -1,0 +1,29 @@
+.upload-dropzone {
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: #666;
+  }
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    color: #666;
+  }
+}
+
+.selected-file {
+  padding: 16px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+
+  mat-progress-bar {
+    margin: 8px 0;
+  }
+}

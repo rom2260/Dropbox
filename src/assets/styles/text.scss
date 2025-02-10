@@ -1,0 +1,79 @@
+.text-start {
+  text-align: start !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-end {
+  text-align: end !important;
+}
+
+.txt-r {
+  text-align: right !important;
+}
+
+.txt-l {
+  text-align: left !important;
+}
+
+.txt-c {
+  text-align: center !important;
+}
+
+.txt-justify {
+  text-align: justify !important;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.fw-bold {
+  font-weight: bold;
+}
+
+.fs-1 {
+  font-size: xx-large;
+}
+
+.text-break {
+  overflow-wrap: break-word;
+}
+.text-wrap {
+  text-wrap: wrap;
+}
+
+.text-danger {
+  color: var(--error) !important;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-muted {
+  color: var(--charcoal) !important;
+}
+
+.text-nowrap {
+  white-space: nowrap !important;
+}
+
+.text-truncate {
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-truncate-multiline {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}

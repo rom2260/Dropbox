@@ -1,0 +1,66 @@
+<div class="fl-row fl-row--middle">
+  <h2 mat-dialog-title class="mb-0">Upload File</h2>
+  @if(!selectedFile()) {
+    <button mat-icon-button (click)="onCancel()" class="ml-auto mr-2">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+</div>
+
+<div class="px-3 pb-3">
+  @if (!selectedFile()) {
+    <div class="upload-dropzone" (click)="fileInput.click()">
+      <input
+        #fileInput
+        type="file"
+        (change)="onFileSelected($event)"
+        class="hidden"
+      />
+      <mat-icon>cloud_upload</mat-icon>
+      <p class="color-charcoal">Click to select a file</p>
+    </div>
+  }
+
+  @if (selectedFile()) {
+    <div class="selected-file">
+      <div class="fl-row fl-row--middle gap-1 w-100">
+        <mat-icon class="color-grey">insert_drive_file</mat-icon>
+        <span class="color-charcoal font-semibold text-truncate" [matTooltip]="selectedFile()?.name || ''">{{ selectedFile()?.name }}</span>
+        <span class="color-grey text-2xs ml-auto">({{ (selectedFile()?.size || 0) | fileSize }})</span>
+      </div>
+
+      @if (uploadFileApiState().progress === API_IN_PROGRESS_STATE.LOADING) {
+        <mat-progress-bar
+          mode="indeterminate"
+        ></mat-progress-bar>
+      }
+
+      @if (!uploadFileApiState().progress || uploadFileApiState().progress === API_IN_PROGRESS_STATE.ERROR) {
+        <div class="w-100 fl-row">
+          <button mat-icon-button (click)="removeFile()" class="mx-auto">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+
+    <div class="fl-row fl-row--middle mt-2">
+      @if (uploadFileApiState().error; as error) {
+        <div class="w-50 color-error text-truncate" [matTooltip]="error">
+          {{ error }}
+        </div>
+      }
+      <div class="w-50 fl-row fl-row--middle ml-auto gap-2">
+        <button [disabled]="uploadFileApiState().progress === API_IN_PROGRESS_STATE.LOADING" class="ml-auto" mat-button (click)="onCancel()">Cancel</button>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!selectedFile() || uploadFileApiState().progress === API_IN_PROGRESS_STATE.LOADING"
+          (click)="upload()"
+        >
+          Upload
+        </button>
+      </div>
+    </div>
+  }
+</div>

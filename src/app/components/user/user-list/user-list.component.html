@@ -1,0 +1,45 @@
+<div class="fl-row fl-row--column">
+  <div class="fl-row fl-row--middle bg-color-mid-grey py-2 px-4">
+    <h1 class="mb-0">Users</h1>
+    <button mat-raised-button color="primary" class="ml-auto" (click)="addUser()">
+      <mat-icon>add</mat-icon>
+      Add User
+    </button>
+  </div>
+  @if (getUsersApiState().progress === API_IN_PROGRESS_STATE.LOADING) {
+    <div class="fl-row fl-row--center fl-row--middle">
+      <mat-spinner diameter="40"></mat-spinner>
+    </div>
+  }
+  @if (getUsersApiState().progress === API_IN_PROGRESS_STATE.ERROR) {
+    <div class="color-error fl-row fl-row--center fl-row--middle">
+      {{ getUsersApiState().error }}
+    </div>
+  }
+
+  @if (getUsersApiState().progress === API_IN_PROGRESS_STATE.SUCCESS) { 
+    @for (user of getUsersApiState().data; let odd = $odd; track user.id) {
+      <div class="fl-row fl-row--middle px-4 py-2" [ngClass]="{'bg-color-light-grey': odd}">
+        <mat-icon class="color-grey">person</mat-icon>
+        <div class="ml-4 fl-row fl-row--column">
+          <a class="font-semibold" href="javascript:void(0)" (click)="viewUserDetails(user.id)">{{ user.username }}</a>
+          <span class="color-charcoal">{{ user.email }}</span>
+        </div>
+        <div class="ml-auto">
+          @if(deleteUserApiStateMap()[user.id]?.error; as error) {
+            <mat-icon class="color-error" [matTooltip]="error">error</mat-icon>
+            <button matTooltip="Delete User" mat-icon-button (click)="deleteUser(user.id)">
+              <mat-icon>refresh</mat-icon>
+            </button>
+          }@else if (deleteUserApiStateMap()[user.id]?.progress === API_IN_PROGRESS_STATE.LOADING) {
+              <mat-spinner diameter="20"></mat-spinner>
+          }@else {
+            <button matTooltip="Delete User" mat-icon-button color="warn" (click)="deleteUser(user.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          }
+        </div>
+      </div>
+    }
+  }
+</div>

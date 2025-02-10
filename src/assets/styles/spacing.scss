@@ -1,0 +1,99 @@
+$spacer: 1rem !default;
+
+$spacers: (
+  '0': 0,
+  '1': (
+    $spacer * 0.25
+  ),
+  '2': (
+    $spacer * 0.5
+  ),
+  '3': $spacer,
+  '4': (
+    $spacer * 1.5
+  ),
+  '5': (
+    $spacer * 3
+  ),
+  'auto': auto
+);
+
+// Defined paddings here
+
+$paddings: (
+  'p': padding,
+  'pt': padding-top,
+  'pr': padding-right,
+  'pb': padding-bottom,
+  'pl': padding-left
+);
+
+@each $paddingKey in map-keys($paddings) {
+  @each $spacerKey in map-keys($spacers) {
+    .#{$paddingKey}-#{$spacerKey} {
+      #{map-get($paddings, $paddingKey)}: #{map-get($spacers, $spacerKey)} !important;
+    }
+  }
+}
+
+@each $spacerKey in map-keys($spacers) {
+  .px-#{$spacerKey} {
+    padding-left: #{map-get($spacers, $spacerKey)} !important;
+    padding-right: #{map-get($spacers, $spacerKey)} !important;
+  }
+}
+
+@each $spacerKey in map-keys($spacers) {
+  .py-#{$spacerKey} {
+    padding-top: #{map-get($spacers, $spacerKey)} !important;
+    padding-bottom: #{map-get($spacers, $spacerKey)} !important;
+  }
+}
+
+// Defined margins here
+
+$margins: (
+  'm': margin,
+  'mt': margin-top,
+  'mr': margin-right,
+  'mb': margin-bottom,
+  'ml': margin-left
+);
+
+@each $marginKey in map-keys($margins) {
+  @each $spacerKey in map-keys($spacers) {
+    .#{$marginKey}-#{$spacerKey} {
+      #{map-get($margins, $marginKey)}: #{map-get($spacers, $spacerKey)} !important;
+    }
+  }
+}
+
+@each $spacerKey in map-keys($spacers) {
+  .mx-#{$spacerKey} {
+    margin-left: #{map-get($spacers, $spacerKey)} !important;
+    margin-right: #{map-get($spacers, $spacerKey)} !important;
+  }
+}
+
+@each $spacerKey in map-keys($spacers) {
+  .my-#{$spacerKey} {
+    margin-top: #{map-get($spacers, $spacerKey)} !important;
+    margin-bottom: #{map-get($spacers, $spacerKey)} !important;
+  }
+}
+
+.gap-1 {
+  gap: 0.25rem;
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+.gap-3 {
+  gap: 1rem;
+}
+.gap-4 {
+  gap: 1.5rem;
+}
+.gap-5 {
+  gap: 3rem;
+}

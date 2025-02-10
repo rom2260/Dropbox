@@ -1,0 +1,75 @@
+$sizes: (
+  '100': 100%,
+  '80': 80%,
+  '75': 75%,
+  '60': 60%,
+  '50': 50%,
+  '40': 40%,
+  '30': 30%,
+  '25': 25%,
+  '20': 20%
+);
+
+$dimensions: (
+  'w': width,
+  'h': height,
+  'maxw': max-width,
+  'maxh': max-height,
+  'minw': min-width,
+  'minh': min-height
+);
+
+@each $size in map-keys($sizes) {
+  @each $dimensionKey in map-keys($dimensions) {
+    .#{$dimensionKey}-#{$size} {
+      #{map-get($dimensions, $dimensionKey)}: #{map-get($sizes, $size)} !important;
+    }
+  }
+}
+
+$sizes: (
+  '100': 100%,
+  '75': 75%,
+  '60': 60%,
+  '50': 50%,
+  '40': 40%,
+  '25': 25%,
+  '20': 20%
+);
+
+$dimensions: (
+  'w': width,
+  'h': height,
+  'maxw': max-width,
+  'maxh': max-height,
+  'minw': min-width,
+  'minh': min-height
+);
+
+@each $size in map-keys($sizes) {
+  @each $dimensionKey in map-keys($dimensions) {
+    .#{$dimensionKey}-#{$size} {
+      #{map-get($dimensions, $dimensionKey)}: #{map-get($sizes, $size)} !important;
+    }
+  }
+}
+
+.h-auto {
+  height: auto !important;
+}
+
+.w-auto {
+  width: auto !important;
+}
+
+.h-fit {
+  height: fit-content;
+}
+
+.w-fit {
+  width: fit-content;
+}
+
+.h-0 {
+  height: 0 !important;
+}
