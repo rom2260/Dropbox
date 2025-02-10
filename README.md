@@ -39,7 +39,7 @@ When cloning the repository for the **first time**, please follow these steps:
 
    ```bash
    # Remove the existing Docker volume to ensure a fresh start
-   docker volume rm dropbox-db-data
+   docker-compose down -v
 
    # Build and run the application using Docker Compose
    docker-compose up --build
