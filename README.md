@@ -30,16 +30,34 @@ Make sure you have the following installed:
 ---
 
 ## 🚀 Quick Start
+### Initial Setup Instructions
 
-### Build and Run:
+When cloning the repository for the **first time**, please follow these steps:
+
+1. **Navigate to the code base** in your terminal.
+2. Run the following commands:
+
+   ```bash
+   # Remove the existing Docker volume to ensure a fresh start
+   docker volume rm dropbox-db-data
+
+   # Build and run the application using Docker Compose
+   docker-compose up --build
+   ```
+
+**Note:** For subsequent runs, you only need to execute:
+
 ```bash
 docker-compose up --build
 ```
 
+This will start your application without needing to remove the Docker volume again.
+
+
 ### Access:
 - **Frontend:** [http://localhost:4200](http://localhost:4200)
 - **Backend:** [http://localhost:8080](http://localhost:8080)
-- **Swagger:** [swagger(api documentation)](http://localhost:8080/swagger-ui/index.html#/)
+- **Swagger (api documentation):** [http://localhost:8080/swagger-ui/index.html#/](http://localhost:8080/swagger-ui/index.html#/)
 
 ---
 
