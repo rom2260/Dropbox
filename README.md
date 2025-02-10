@@ -25,7 +25,7 @@ A full-stack application that mimics basic Dropbox functionality using **Spring 
 
 Make sure you have the following installed:  
 
-- **Docker & Docker Compose** 
+- **Docker** 
 
 ---
 
