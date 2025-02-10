@@ -4,6 +4,12 @@ A full-stack application that mimics basic Dropbox functionality using **Spring 
 
 ---
 
+## 🎥 Demo Video
+
+Check out the [demo video](https://drive.google.com/file/d/1RCEac_ewo8e5CH4N4ApXpWvLHInWTOPY/view?usp=sharing) to see the project in action!
+
+---
+
 ## 🏛 Architecture  
 
 ### 🔹 Backend (Spring Boot)  
