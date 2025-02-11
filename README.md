@@ -17,7 +17,7 @@ Check out the [demo video](https://drive.google.com/file/d/1RCEac_ewo8e5CH4N4ApX
 
 #### **Key Components**  
 - `FileService` → Handles file operations (upload/download)  
-- `UserService` → Manages user authentication & profile  
+- `UserService` → Manages user profile  
 - `StorageService` → AWS S3 integration for file storage  
 
 ### 🔹 Frontend (Angular)  
